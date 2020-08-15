@@ -9,6 +9,7 @@
       @if(Auth::id() == $user_id)
         <div class="py-md-2 uk-flex-last">
           <a href="{{ url('create-interview') }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Create an Interview</a>
+          <a href="{{ url('qparty/create_profile') }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Create Q Party</a>
         </div>
       @endif
       <div>

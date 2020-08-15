@@ -2,21 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', 'PagesController@home_page');
 
 Route::get('home', function () {
 	// return bcrypt('kittensdie2');
+	// Mail::to("nallapagan1997@gmail.com")->send(new QPartyInvitationMail());
+	
 	
     return view('home');
 });
@@ -67,6 +59,18 @@ Route::post('brand/answer_a_question', 'BrandInterviewController@answer');
 Route::get('brand/{user}/{slug:slug}', 'BrandInterviewController@single_user_question');
 //End Branding Routes
 
+//QParty Routes
+Route::get('qparty/create_profile', 'QuestionPartyController@create_profile')->middleware(['auth','verified']);
+Route::post('qparty/create', 'QuestionPartyController@store')->name('create_qparty');
+Route::get('qparty/{qparty:slug}', 'QPartyInterviewController@index');
+
+Route::post('qparty/ask_question', 'QPartyInterviewController@ask_question');
+Route::post('qparty/answer_a_question', 'QPartyInterviewController@answer');
+Route::get('qparty/{user}/{slug:slug}', 'QPartyInterviewController@single_user_question');
+
+Route::get('qparty/accept/{user}/{token}', 'InviteController@qparty_process')->middleware(['auth','verified']);
+
+//End QParty Routes
 //Media House
 Route::post('media_house/create', 'MediaHouseController@create')->name('create-media-house');
 Route::post('media_house/update', 'MediaHouseController@update')->name('update-media-house');

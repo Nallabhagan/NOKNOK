@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <meta name="author" content="">
         <meta name="description" content="">
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
@@ -10,23 +11,26 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>:: NOKNOK - Interview Anyone Share With Everyone ::</title>
+        <title>NOKNOK - Interview Anyone Share With Everyone </title>
         
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <!--  Favicon -->
-        <link rel="shortcut icon" href="{{ url('images/favicon.png') }}">
+        <link rel="icon" type="image/png" href="{{ url('images/favicon-32x32.png') }}" sizes="32x32" />
+        <link rel="icon" type="image/png" href="{{ url('images/favicon-16x16.png') }}" sizes="16x16" />
+
         <!-- CSS -->
         <link rel="stylesheet" href="{{ url('css/bootstrap-grid.css') }}">
         <link rel="stylesheet" href="{{ url('css/icons.css') }}">
-        {{-- <link rel="stylesheet" href="https://voteracts.com/assets/css/icons.css"> --}}
-        <link rel="stylesheet" href="{{ url('css/style.css') }}">
+        
+        <link rel="stylesheet" href="{{ url('css/noknok.css') }}">
         <link rel="stylesheet" href="{{ url('css/main.css') }}">
         <link rel="stylesheet" href="{{ url('css/framework.css') }}">
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
         <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> 
         <script type="text/javascript" src="{{ url('js/framework.js') }}"></script>
+        
     </head>
     <body>
         
@@ -78,14 +82,15 @@
             @show()
             
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159162800-1"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159162800-1"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
         
           gtag('config', 'UA-159162800-1');
-        </script> --}}
+        </script> 
+        
     </body>
 
 </html>

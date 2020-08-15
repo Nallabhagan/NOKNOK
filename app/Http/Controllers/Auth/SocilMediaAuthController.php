@@ -34,8 +34,15 @@ class SocilMediaAuthController extends Controller
             }
             
             Auth::login($findUser);
-            
-            return redirect(session('url.intended'));
+            $home_url = url('/').'/';
+            $session_url = session('url.intended');
+    
+            if($home_url === $session_url) { 
+                return redirect('/user/' . Hashids::connection('user')->encode($findUser->id));
+            } else {
+                return redirect(session('url.intended'));
+            }
+            // return redirect(session('url.intended'));
         }else{
             $date = Carbon::now();
             $user = new User;
@@ -55,7 +62,15 @@ class SocilMediaAuthController extends Controller
             
             
             Auth::login($user);
-            return redirect(session('url.intended'));
+            $home_url = url('/').'/';
+            $session_url = session('url.intended');
+    
+            if($home_url === $session_url) { 
+                return redirect('/user/' . Hashids::connection('user')->encode($user->id));
+            } else {
+                return redirect(session('url.intended'));
+            }
+            // return redirect(session('url.intended'));
         }
     }
 
@@ -91,7 +106,15 @@ class SocilMediaAuthController extends Controller
             }
             
             Auth::login($findUser);
-            return redirect(session('url.intended'));
+            $home_url = url('/').'/';
+            $session_url = session('url.intended');
+    
+            if($home_url === $session_url) { 
+                return redirect('/user/' . Hashids::connection('user')->encode($findUser->id));
+            } else {
+                return redirect(session('url.intended'));
+            }
+            // return redirect(session('url.intended'));
         }else{
             $date = Carbon::now();
             $user = new User;
@@ -109,8 +132,16 @@ class SocilMediaAuthController extends Controller
                 session(['url.intended' => url()->previous()]);
             }
             Auth::login($user);
+            $home_url = url('/').'/';
+            $session_url = session('url.intended');
+    
+            if($home_url === $session_url) { 
+                return redirect('/user/' . Hashids::connection('user')->encode($user->id));
+            } else {
+                return redirect(session('url.intended'));
+            }
 
-            return redirect(session('url.intended'));
+            // return redirect(session('url.intended'));
         }
         
     }

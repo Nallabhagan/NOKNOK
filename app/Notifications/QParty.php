@@ -7,9 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class BrandQuestion extends Notification
+class QParty extends Notification
 {
-    use Queueable; 
+    use Queueable;
 
     /**
      * Create a new notification instance.
@@ -54,6 +54,7 @@ class BrandQuestion extends Notification
             "url" => $this->details['interview_url']
         ];
     }
+
     /**
      * Get the array representation of the notification.
      *
