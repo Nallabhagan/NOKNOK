@@ -12,9 +12,10 @@
 						<li>
 							<a href="{{ url('create-interview') }}" class="@if (Request::path() == 'create-interview') current @endif">Create Interview</a>
 						</li>
-						{{-- <li>
-							<a href="{{ url('brand/ask-on-question') }}" class="@if (Request::path() == 'brand/ask-on-question') current @endif">Ask a Question</a>
-						</li> --}}
+						<li>
+							<a href="https://tawk.to/chat/5f34d733b7f44f406e947521/default" target="_blank">Contact Us</a>
+						</li>
+						
 					</ul>
 				</nav>
 				<div class="clearfix"></div>
@@ -74,7 +75,7 @@
 						<div class="utf-header-notifications-trigger user-profile-title">
 							@auth
 								<a href="#">
-									<div class="user-avatar"><img src="{{ Auth::user()->profile_pic  }}" alt=""> </div>
+									<div class="user-avatar"><img src="{{ Helper::user_profile_pic(Auth::id())  }}" alt=""> </div>
 									<div class="user-name">Hi, {{ Auth::user()->name }}</div>
 								</a>
 							@else 
@@ -88,6 +89,7 @@
 							<ul class="utf-user-menu-dropdown-nav">
 								@auth
 									<li><a href="{{ url('user') }}/{{ Hashids::connection('user')->encode(Auth::user()->id) }}"><i class="icon-feather-user"></i> My Profile</a></li>
+									<li><a href="{{ url('dashboard/profile') }}"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
 									@if(Auth::user()->id == 1)
 										<li><a href="{{ url('brand/create_profile') }}"><i class="icon-feather-user"></i> Create Brand</a></li>
 									@endif

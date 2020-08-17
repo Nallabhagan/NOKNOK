@@ -16,7 +16,7 @@
         <nav class="responsive-tab">
           <ul>
             <li class="tablinks" onclick="openTab(event, 'nokit')" id="defaultOpen"><a>Nok It</a></li>
-            <li class="tablinks" onclick="openTab(event, 'giveInterview')"><a>Give your Interview</a></li>
+            <li class="tablinks" onclick="openTab(event, 'qparty')"><a>Q Party</a></li>
             <li class="tablinks" onclick="openTab(event, 'givenInterview')" id="defaultOpen"><a>Interview Given</a></li>
             <li class="tablinks" onclick="openTab(event, 'takenInterview')"><a>Interview Taken</a></li>
           </ul>
@@ -28,8 +28,8 @@
 </div>
 <div class="col-md-12 pt-4">
   <div class="container">
-      <div id="giveInterview" class="tabcontent">
-        <x-give-interview />
+      <div id="qparty" class="tabcontent">
+        <x-profile.q-party id="{{ $user_id }}"/>
       </div>
       <div id="givenInterview" class="tabcontent">
         <x-profile.given-interviews id="{{ $user_id }}"/>

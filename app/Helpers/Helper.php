@@ -17,8 +17,17 @@ class Helper
 	}
 
 	public static function user_profile_pic($id) {
+
 		$user = User::select('profile_pic')->where(["id" => $id])->first();
-		return $user->profile_pic;
+
+		if(filter_var($user->profile_pic, FILTER_VALIDATE_URL))
+		{
+		    return $user->profile_pic;
+		}
+		else
+		{
+			return url('assets/user_profile')."/".$user->profile_pic;
+		}
 	}
 
 	public static function interview_question_details($question_id) {

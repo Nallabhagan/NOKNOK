@@ -2,10 +2,11 @@
 
 namespace App\View\Components\Profile;
 
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 
-class TakenInterviews extends Component
+class QParty extends Component
 {
     public $id;
     /**
@@ -25,12 +26,9 @@ class TakenInterviews extends Component
      */
     public function render()
     {
+        //the model and component name are same thats y i fetch data using DB class
+        $qparties = DB::table('q_parties')->select("*")->where(["user_id" => $this->id, "status" => "ACCEPTED"])->get();
        
-        $interviews = DB::table('questions')
-                    ->select('questions.*','interviews.user_id as answer_user_id')
-                    ->join('interviews','interviews.question_id','=','questions.id')
-                    ->where(['questions.user_id' => $this->id])
-                    ->paginate(8);
-        return view('components.profile.taken-interviews',compact('interviews'));
+        return view('components.profile.q-party',compact('qparties'));
     }
 }

@@ -8,11 +8,12 @@
 				<div class="course-card-body">
 					<h4>{{ $interview->title }}</h4>
 					<p> {{ $interview->description }}</p>
-					@if(Auth::user()->id == $id)
-						<a href="{{ url('/') }}/{{ $interview->slug }}" class="btn btn-sm">Share Link</a>
-					@endif
+					<a href="{{ url('interview') }}/{{ Hashids::connection('answer_slug')->encode($interview->answer_user_id) }}/{{ $interview->slug }}" class="btn btn-sm">Read Interview</a>
 				</div>
 			</div>
 		</div>
 	@endforeach
+</div>
+<div class="m-3">
+	{{ $interviews->links() }}
 </div>

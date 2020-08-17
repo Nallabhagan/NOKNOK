@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('social-media-meta-tags')
-    
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e6c61d570a78000121d9aa3&product=inline-share-buttons' async='async'></script>
     <meta property="og:url"           content="{{ url('qparty') }}/{{ $qparty->slug }}" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="NOKNOK STARS | Ask a Question to {{ Helper::username($qparty->member_id) }}" />
+    <meta property="og:title"         content="Q PARTY | Ask a Question to {{ Helper::username($qparty->member_id) }}" />
     <meta property="og:description"   content="{{ $qparty->description }}" />
     <meta property="og:image"         content="{{ url('assets/qparty_thumbnails') }}/{{ $qparty->image }}" />
     <meta property="og:image:width" content="300" />

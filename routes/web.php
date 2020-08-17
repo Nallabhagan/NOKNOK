@@ -86,6 +86,26 @@ Route::post('user/unfollow', 'FollowerController@unfollow')->name('unfollow');
 Route::post('nokit/create', 'NokItController@save')->name('nok-it');
 //End Nok It
 
+//Dashboard
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','verified']], function () {
+	
+	//profile
+    Route::get('profile', 'Dashboard\ProfileController@index');
+    Route::post('profile/profile_pic', 'Dashboard\ProfileController@profile_pic')->name('change-profile-pic');
+    Route::post('profile/profile_details', 'Dashboard\ProfileController@profile_details')->name('change-profile-details');
+    Route::post('profile/social_links', 'Dashboard\ProfileController@social_links')->name('social_links');
+    //end profile
+
+    //interviews
+    Route::get('interviews', 'Dashboard\InterviewController@index');
+    //end interviews
+
+    //Q Party
+    Route::get('qparties', 'Dashboard\QPartyController@index');
+    //End Q Party
+});
+//End Dashboard
+
 
 //Read all notifications
 Route::get('notifications/markAsRead', function(){

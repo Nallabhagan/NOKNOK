@@ -10398,6 +10398,7 @@ ul.utf-download-text li a:hover {
 	-webkit-box-sizing: border-box!important;
 	box-sizing: border-box!important;
 	min-height: 100%!important;
+	margin-right: 0px !important;
 }
 .simplebar-track {
 	z-index: 1;
