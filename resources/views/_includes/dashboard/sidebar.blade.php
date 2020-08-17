@@ -12,7 +12,6 @@
             </span>
             <div class="user-profile-text">
               <span class="fullname">{{ Helper::username(Auth::id()) }}</span>
-              <span class="user-role">{{ Helper::media_name(Auth::user()->media_house) }}</span>
             </div>
           </div>
           <div class="clearfix"></div>
