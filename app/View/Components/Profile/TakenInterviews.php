@@ -30,6 +30,7 @@ class TakenInterviews extends Component
                     ->select('questions.*','interviews.user_id as answer_user_id')
                     ->join('interviews','interviews.question_id','=','questions.id')
                     ->where(['questions.user_id' => $this->id])
+                    ->inRandomOrder()
                     ->paginate(8);
         return view('components.profile.taken-interviews',compact('interviews'));
     }

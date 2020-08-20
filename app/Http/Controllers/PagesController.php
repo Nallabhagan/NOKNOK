@@ -20,7 +20,6 @@ class PagesController extends Controller
     }
 
     public function user_profile($user) {
-
     	$user_id = Hashids::connection('user')->decode($user)[0];
     	return view('pages.user',compact('user_id'));
     }

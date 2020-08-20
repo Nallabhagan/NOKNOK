@@ -30,7 +30,7 @@
                             <div class="post-title">
                                 <h4>
                                     <a href="{{ url('user') }}/{{ Hashids::connection('user')->encode($interview->user_id) }}"> {{ Helper::username($interview->user_id) }} </a> Answered 
-                                    <a href="#">{{ Helper::username(Helper::interview_question_details($interview->question_id)->user_id) }} Interview</a>
+                                    <a href="{{ url('user') }}/{{ Hashids::connection('user')->encode(Helper::interview_question_details($interview->question_id)->user_id) }}">{{ Helper::username(Helper::interview_question_details($interview->question_id)->user_id) }} Interview</a>
                                 </h4>
                                 <p> {{ $interview->created_at->diffForHumans() }} </p>
                             </div>
