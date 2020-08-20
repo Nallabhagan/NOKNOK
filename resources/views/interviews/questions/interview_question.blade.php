@@ -3,8 +3,18 @@
 
     <meta property="og:url"           content="{{ url('/') }}/{{ $interview->slug }}" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="NOK NOK | {{ $interview->title }}" />
-    <meta property="og:description"   content="{{ $interview->description }}" />
+    @php
+        $title = "";
+        if(Helper::user_media_house_id($interview->user_id) != NULL)
+        {
+            $title = Helper::media_name(Helper::user_media_house_id($interview->user_id))." would like to interview on ".$interview->title;
+        } else {
+            $title = Helper::username($interview->user_id)." Created an Interview";
+        }
+        
+    @endphp
+    <meta property="og:title"         content="{{ $title }}" />
+    <meta property="og:description"   content="Give your interview" />
     <meta property="og:image"         content="{{ url('assets/interview_thumbnails') }}/{{ $interview->thumbnail_image }}" />
     <meta property="fb:app_id" content="2714676228810928" />
     
@@ -28,8 +38,12 @@
                 <div class="job-description-image-aera">
                     <img class="mt-3" src="{{ url('assets/interview_thumbnails') }}/{{ $interview->thumbnail_image }}" alt="" />
                     <h4 class="mb-3">
-                        <a href="">
-                            <span>{{ Helper::username($interview->user_id) }}</span>
+                        <a href="{{ url('user') }}/{{ Hashids::connection('user')->encode($interview->user_id) }}">
+                            @if(Helper::user_media_house_id($interview->user_id) != NULL)
+                                <span>{{ Helper::media_name(Helper::user_media_house_id($interview->user_id)) }}</span>
+                            @else
+                                <span>{{ Helper::username($interview->user_id) }}</span>
+                            @endif
                         </a> 
                         Created an Interview
                     </h4>
@@ -47,12 +61,12 @@
                         <div class="utf-submit-field">
                             <h5>{{ $i+1 }}. {{ $interview->questions[$i] }}</h5>
                             @auth
-                                <textarea class="utf-with-border" rows="1" placeholder="Enter your Answer" onkeyup="textAreaAdjust(this)" style="overflow:hidden" name="answers[]" required></textarea>
+                                <textarea class="utf-with-border" id="answer{{ $i }}" rows="1" placeholder="Enter your Answer" onkeyup="textAreaAdjust(this)" style="overflow:hidden" name="answers[]" required></textarea>
                             @endauth
                         </div>
                     @endfor
                     @auth
-                        <button type="submit" class="button full-width utf-button-sliding-icon ripple-effect margin-top-10" style="font-size: 20px; font-weight: bold;">Finish Interview <i class="icon-feather-chevrons-right"></i></button>
+                        <button type="submit" class="button full-width utf-button-sliding-icon ripple-effect margin-top-10" style="font-size: 20px; font-weight: bold;" id="change_action">Finish Interview <i class="icon-feather-chevrons-right"></i></button>
                     @else 
                         <a href="{{ route('login') }}" class="button full-width utf-button-sliding-icon ripple-effect margin-top-10" style="font-size: 20px; font-weight: bold;">Give Your Interview</a>
                     @endauth
@@ -70,5 +84,20 @@
       o.style.height = "1px";
       o.style.height = (25+o.scrollHeight)+"px";
     }
+    //to disable button until redirect to next page
+    $(document).on("click","#change_action",function(){
+        var i,flag=0;
+        var count = parseInt("{{ $i }}");
+        for(i=0;i<count;i++) {
+            if($("#answer"+i).val() != "") {
+                flag++;
+            }
+        }
+        if(flag == count)
+        {
+            $("#change_action").attr("disabled","disabled");
+            $("#change_action").html("Finishing...");  
+        }
+    });
 </script>
 @endsection

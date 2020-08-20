@@ -16,6 +16,11 @@ class Helper
 		return $user->name;
 	}
 
+	public static function user_media_house_id($id) {
+		$media_house_id = User::select('media_house')->where(["id" => $id])->first();
+		return $media_house_id->media_house;
+	}
+
 	public static function user_profile_pic($id) {
 
 		$user = User::select('profile_pic')->where(["id" => $id])->first();

@@ -2,10 +2,20 @@
 @section('social-media-meta-tags')
     <script data-ad-client="ca-pub-5579049466595431" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e6c61d570a78000121d9aa3&product=inline-share-buttons' async='async'></script>
-    <meta property="og:url" content="{{ url('/') }}/{{ Hashids::connection('answer_slug')->encode($interview->user_id) }}/{{ Helper::interview_question_details($interview->question_id)->slug }}" />
+    @php
+        $title = Helper::user_media_house_id(Helper::interview_question_details($interview->question_id)->user_id);
+        if(Helper::user_media_house_id(Helper::interview_question_details($interview->question_id)->user_id) != NULL)
+        {
+            $title = "Media House | ".Helper::media_name(Helper::user_media_house_id(Helper::interview_question_details($interview->question_id)->user_id));
+        } else {
+            $title = "NOK NOK | ".Helper::username(Helper::interview_question_details($interview->question_id)->user_id);
+        }
+        
+    @endphp
+    <meta property="og:url" content="{{ url('interview') }}/{{ Hashids::connection('answer_slug')->encode($interview->user_id) }}/{{ Helper::interview_question_details($interview->question_id)->slug }}" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="NOK NOK | {{ Helper::interview_question_details($interview->question_id)->title }}" />
-    <meta property="og:description"   content="{{ Helper::interview_question_details($interview->question_id)->description }}" />
+    <meta property="og:title"         content="{{ $title }}" />
+    <meta property="og:description"   content="{{ Helper::username($interview->user_id) }}'s Interview on {{ Helper::interview_question_details($interview->question_id)->title }}" />
     <meta property="og:image"         content="{{ url('assets/interview_thumbnails/') }}/{{ Helper::interview_question_details($interview->question_id)->thumbnail_image }}" />
     <meta property="fb:app_id" content="2714676228810928" />
     
