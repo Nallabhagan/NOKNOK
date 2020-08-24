@@ -45,12 +45,36 @@
     </a>
   </div>
   
-
-
-        
-      
-
-  <x-home.ask-question></x-home.ask-question>
+  <div class="section padding-top-65">
+    <div class="container">
+      <div class="row">
+        <div class="utf-companies-list-aera">
+          <div class="col-xl-12">
+            <div class="row">
+              <x-home.media-house-component />
+            </div>
+          </div>
+          <!-- Pagination -->
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+  <div class="section padding-top-65">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="utf-section-headline-item centered margin-top-0 margin-bottom-40">
+            <span>NOKNOK</span>
+            <h3>NOKNOK STARS</h3>
+            <div class="utf-headline-display-inner-item">Your Questions</div>
+          </div>
+          <x-home.ask-question></x-home.ask-question>
+        </div>
+      </div>
+    </div>
+  </div>
   
   <div class="section margin-top-60 margin-bottom-50">
     <div class="container">
@@ -82,5 +106,40 @@
     </div>
   </div>
   
+@endsection
+
+@section('scripts')
+  <script type="text/javascript">
+    $(document).on('click','.follow',function(){
+        var following_id = $(this).attr("data-id");
+        
+        $("#follow_status"+following_id).html('<button data-id="'+following_id+'" class="unfollow btn btn-primary font-weight-bold ml-2 mb-1"><i class="icon-feather-user-check text-white"></i> following</button>');
+        $.ajax({
+            url: "{{ route('follow') }}",
+            method: "POST",
+            data: {
+                "following_id": following_id,
+                "_token": $('input[name=_token]').val()
+            },
+            success:function(data){
+            }
+        });
+    });
+
+    $(document).on('click','.unfollow',function(){
+        var following_id = $(this).attr("data-id");
+        $("#follow_status"+following_id).html('<button data-id="'+following_id+'" class="follow btn btn-primary font-weight-bold ml-2 mb-1"><i class="icon-feather-user-x text-white"></i> follow</button>');
+        $.ajax({
+            url: "{{ route('unfollow') }}",
+            method: "POST",
+            data: {
+                "following_id": following_id,
+                "_token": $('input[name=_token]').val()
+            },
+            success:function(data){
+            }
+        });
+    });
+</script>
 @endsection
 
