@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('social-media-meta-tags')
   @if(Helper::user_media_house_id($user_id) != NULL)
-    <meta property="og:description" content="{{ Helper::media_description(Helper::user_media_house_id($user_id)) }}" />
-    <meta property="og:title" content="{{ Helper::media_name(Helper::user_media_house_id($user_id)) }} | Follow My Media House" />
+    <meta property="og:description" content="{{ $content }}" />
+    <meta property="og:title" content="NokIt | Follow My Media House" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="{{ url('user') }}/{{ Hashids::connection('user')->encode($user_id) }}" />
+    <meta property="og:url" content="{{ url('nokit') }}/{{ Hashids::connection('nokit')->encode($id) }}" />
     <meta property="og:image" content="{{ Helper::user_profile_pic($user_id) }}" />
     <meta property="fb:app_id" content="2714676228810928" />
   @endif
@@ -33,38 +33,36 @@
     </div>
   </div>
 </div>
-<div class="container pt-4">
-  <div id="qparty" class="tabcontent">
-    <x-profile.q-party id="{{ $user_id }}"/>
-  </div>
-  <div id="givenInterview" class="tabcontent">
-    <x-profile.given-interviews id="{{ $user_id }}"/>
-  </div>
-
-  <div id="takenInterview" class="tabcontent">
-    <x-profile.taken-interviews id="{{ $user_id }}"/>
-  </div> 
-  <div id="nokit" class="tabcontent">
-    <div class="row">
-      
-      <div class="col-md-6">
-        @if($user_id == Auth::id())
-          <x-nok-it.create />
-        @endif
-        @foreach($feeds as $feed)
-          <x-nok-it.single-feed id="{{ $feed->id }}"/>
-        @endforeach
+<div class="col-md-12 pt-4">
+  <div class="container">
+      <div id="qparty" class="tabcontent">
+        <x-profile.q-party id="{{ $user_id }}"/>
       </div>
-      
-    </div>
-  </div> 
+      <div id="givenInterview" class="tabcontent">
+        <x-profile.given-interviews id="{{ $user_id }}"/>
+      </div>
+
+      <div id="takenInterview" class="tabcontent">
+        <x-profile.taken-interviews id="{{ $user_id }}"/>
+      </div> 
+      <div id="nokit" class="tabcontent">
+        <div class="row">
+          
+          <div class="col-md-6">
+            
+            <x-nok-it.single-feed id="{{ $id }}"/>
+          </div>
+          
+        </div>
+      </div> 
+  </div>
 </div>
 
   
 @endsection
 
 @section('scripts')
-@csrf
+
 <script>
   
 function openTab(evt, cityName) {
@@ -82,11 +80,8 @@ function openTab(evt, cityName) {
 }
 
 document.getElementById("defaultOpen").click();
-
-
 </script>
 
 @include('_includes.follow_control_script')
 @include('_includes.nokit_feed_scripts')
-
 @endsection

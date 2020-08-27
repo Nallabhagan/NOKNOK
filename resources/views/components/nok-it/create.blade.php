@@ -1,5 +1,5 @@
 <div class="post-newer">
-  <div class="post-new border bg-success" uk-toggle="target: body ; cls: post-focus" style="box-shadow: none;">
+  <div class="post-new border box-shadow" uk-toggle="target: body ; cls: post-focus" style="background-color: #ff8a00;">
     <div class="post-new-media">
       <div class="post-new-media-user">
         <img src="{{ Helper::user_profile_pic(Auth::id()) }}" alt="">

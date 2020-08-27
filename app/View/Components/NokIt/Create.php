@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\NokIt;
 
 use Illuminate\View\Component;
 
-class NokIt extends Component
+class Create extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class NokIt extends Component
      */
     public function render()
     {
-        return view('components.nok-it');
+        return view('components.nok-it.create');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Helpers;
 use App\Follower;
 use App\Interview;
 use App\MediaHouse;
+use App\NokItComment;
+use App\NokItLike;
 use App\Question;
 use App\StarAnswer;
 use App\User;
@@ -87,5 +89,26 @@ class Helper
 	{
 		$follower_count = Follower::select('user_id')->where(['following_id' => $id])->count();
 		return $follower_count;
+	}
+
+	public static function like_check($userid,$nokit_id)
+	{
+		$row = NokItLike::where(['user_id'=>$userid,'nok_it_id'=>$nokit_id])->first();
+		if($row != null)
+		{
+			return true;
+		}
+	}
+
+	public static function comment_count($id)
+	{
+		$comment_count = NokItComment::select('user_id')->where(['nok_it_id' => $id])->count();
+		return $comment_count;
+	}
+
+	public static function like_count($id)
+	{
+		$like_count = NokItLike::select('user_id')->where(['nok_it_id' => $id])->count();
+		return $like_count;
 	}
 }

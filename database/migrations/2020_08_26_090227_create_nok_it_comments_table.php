@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQPartyInterviewsTable extends Migration
+class CreateNokItCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateQPartyInterviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('q_party_interviews', function (Blueprint $table) {
+        Schema::create('nok_it_comments', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('qparty_id')->references('id')->on('q_parties');
-            $table->text('question');
-            $table->text('answer')->nullable();
-            $table->string('status');
+            $table->integer('nok_it_id');
+            $table->text('comment');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateQPartyInterviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('q_party_interviews');
+        Schema::dropIfExists('nok_it_comments');
     }
 }

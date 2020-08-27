@@ -43,7 +43,7 @@ Route::post('star_answer/remove_star', 'StarAnswersController@remove_star');
 //End Star answer
 
 // User Profile
-Route::get('user/{user}', 'PagesController@user_profile')->middleware(['auth','verified']);
+Route::get('user/{user}', 'PagesController@user_profile');
 
 //End User Profile
 
@@ -83,7 +83,13 @@ Route::post('user/unfollow', 'FollowerController@unfollow')->name('unfollow');
 //end following
 
 //Nok It
-Route::post('nokit/create', 'NokItController@save')->name('nok-it');
+Route::group(['prefix' => 'nokit', 'middleware' => ['auth','verified']], function () {
+    Route::post('create', 'NokItController@save')->name('nok-it');
+    Route::post('delete', 'NokItController@delete')->name('delete');
+    Route::post('like', 'NokIt\LikesController@like')->name('like');
+    Route::post('comment', 'NokIt\CommentsController@save_comment')->name('comment');
+});
+Route::get('nokit/{nokit_id}', 'PagesController@shared_nokit');
 //End Nok It
 
 //Dashboard

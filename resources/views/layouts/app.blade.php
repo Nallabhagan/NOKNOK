@@ -30,7 +30,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
         <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> 
         <script type="text/javascript" src="{{ url('js/framework.js') }}"></script>
-        
+        <script src="{{ asset('js/sharer.js') }}"></script>
     </head>
     <body>
         

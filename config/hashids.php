@@ -56,7 +56,7 @@ return [
         ],
         'user' => [
             'salt' => 'NokNokUsersqwertyuiopasdfghjklzxcvbnmQETUOADGJLZCBM',
-            'length' => 50
+            'length' => 5
         ],
         'qparty' => [
             'salt' => 'QPartyqwertyuiopasdfghjklzxcvbnmQETUOADGJLZCBMMediaHouse',
@@ -65,6 +65,10 @@ return [
         'qparty_slug' => [
             'salt' => 'QPartyqwertyuiopasdfghjklzxcvbnmQETUOADGJLZCBMMediaHouse',
             'length' => 2,
+        ],
+        'nokit' => [
+            'salt' => 'NokItqwertyuiopasdfghjklzxcvbnmQETUOADGJLZCBMNokIt',
+            'length' => 5,
         ]
 
     ],

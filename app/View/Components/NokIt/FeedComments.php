@@ -1,11 +1,11 @@
 <?php
 
-namespace App\View\Components\profile;
+namespace App\View\Components\NokIt;
 
-use App\NokIt;
+use App\NokItComment;
 use Illuminate\View\Component;
 
-class NokItFeed extends Component
+class FeedComments extends Component
 {
     public $id;
     /**
@@ -25,7 +25,7 @@ class NokItFeed extends Component
      */
     public function render()
     {
-        $feeds = NokIt::orderBy("id","DESC")->select('*')->where(["user_id" => $this->id])->get();
-        return view('components.profile.nok-it-feed', compact('feeds'));
+        $comments = NokItComment::select("*")->where(["nok_it_id" => $this->id])->get();
+        return view('components.nok-it.feed-comments', compact('comments'));
     }
 }
