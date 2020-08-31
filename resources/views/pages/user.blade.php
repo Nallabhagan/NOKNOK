@@ -16,8 +16,14 @@
   <div class="container">
     <div class="nav-profile" style="box-shadow: inherit;">
       <div class="py-md-2 uk-flex-last">
-        <a href="{{ url('create-interview') }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Create an Interview</a>
-        <a href="{{ url('qparty/create_profile') }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Create Q Party</a>
+        @if($user_id == Auth::id())
+          <a href="{{ url('create-interview') }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Create an Interview</a>
+          <a href="{{ url('qparty/create_profile') }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Create Q Party</a>
+        @else
+          <a href="{{ url('create-interview?member=') }}{{ Hashids::connection('user')->encode($user_id) }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Ask for an Interview</a>
+          <a href="{{ url('qparty/create_profile?member=') }}{{ Hashids::connection('user')->encode($user_id) }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Invite Q Party</a>
+        @endif
+        
       </div>
       <div>
         <nav class="responsive-tab">

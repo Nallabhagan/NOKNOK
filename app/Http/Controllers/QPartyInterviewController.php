@@ -17,10 +17,25 @@ class QPartyInterviewController extends Controller
         
         if($qparty->status == "SAVED")
         {
-        	
-            $invite_token = Invite::select('token')->where(["invite_id" => $qparty->id,"type" => "qparty"])->first()['token'];
-        	$url = url('qparty/accept').'/'.Hashids::connection('qparty_slug')->encode($qparty->user_id).'/'.$invite_token;
-        	return redirect($url);
+        	if($qparty->member_id != NULL) //invite for noknok user
+            {
+                if($qparty->user_id != Auth::id()) 
+                {
+                    if($qparty->member_id == Auth::id()) // check valid guest
+                    {
+                        $invite_token = Invite::select('token')->where(["invite_id" => $qparty->id,"type" => "qparty"])->first()['token'];
+                        $url = url('qparty/accept').'/'.Hashids::connection('qparty_slug')->encode($qparty->user_id).'/'.$invite_token;
+                        return view('qparty.noknok_user.accept_invitation',compact('qparty','url'));
+                    } else {
+                        return redirect('/');
+                    }
+                } else {
+                    // invite email id not a noknok user
+                    $invite_token = Invite::select('token')->where(["invite_id" => $qparty->id,"type" => "qparty"])->first()['token'];
+                    $url = url('qparty/accept').'/'.Hashids::connection('qparty_slug')->encode($qparty->user_id).'/'.$invite_token;
+                    return redirect($url);
+                }
+            } 
         }
         else if($qparty->status == "ACCEPTED")
         {

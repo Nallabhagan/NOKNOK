@@ -15,8 +15,6 @@ use Vinkla\Hashids\Facades\Hashids;
 class InterviewController extends Controller
 {
 	
-    
-
     //display interview Form with questions
     public function show_interview_questions(Question $interview) {
         
@@ -24,7 +22,7 @@ class InterviewController extends Controller
             //to check already answered
             $user = Interview::where(['user_id' => Auth::id(), 'question_id' => $interview->id])->first();
 
-            if($interview->user_id == Auth::id()) { //$interview->user_id->id bcz of  mutators
+            if($interview->user_id == Auth::id()) { 
                 $interview = Question::select('*')->where(["id" =>$interview->id])->first();
                 return view('interviews.user_interview_pages.interview_creater',compact('interview'));
             } else if($user == null){

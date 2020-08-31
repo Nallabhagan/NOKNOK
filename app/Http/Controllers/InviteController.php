@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Invite;
 use App\QParty;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Vinkla\Hashids\Facades\Hashids;
@@ -26,7 +27,15 @@ class InviteController extends Controller
     			$delete_invitation = Invite::where(["token" => $token])->delete();
     			if($delete_invitation)
     			{
-    				$url = url('qparty')."/".$qparty->slug;
+                    $url = url('qparty')."/".$qparty->slug;
+                    $details = [
+                        "notification_message" => "Accepted your QParty Invitation",
+                        "user_id" => Auth::id(),
+                        "qparty_url" => $url
+                    ];
+                    $notify_user = User::find($user_id);
+                    $notify_user->notify(new \App\Notifications\InviteQparty($details));
+    				
     				return redirect($url);
     			}
     		}
@@ -52,5 +61,10 @@ class InviteController extends Controller
                 return redirect('/');
             }
     	}
+    }
+
+    public function qparty_invite($token)
+    {
+        return $token;
     }
 }

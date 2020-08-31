@@ -45,12 +45,14 @@
 				                    
 				                </div>
 							</div>
-							
-							<div class="utf-submit-field">
-								<h5>Invite Email Id</h5>
-								<input type="email" id="email" placeholder="Enter Email Id" required="required" class="utf-with-border" name="invite_email"> <!---->
-							</div>
-
+							@if(!isset($member_id))
+								<div class="utf-submit-field">
+									<h5>Invite Email Id</h5>
+									<input type="email" id="email" placeholder="Enter Email Id" required="required" class="utf-with-border" name="invite_email"> <!---->
+								</div>
+							@else
+								<input type="hidden" name="member_token" value="{{ Hashids::connection('user')->encode($member_id) }}">
+							@endif
 							
 							<button type="submit" id="change_action" class="button full-width utf-button-sliding-icon ripple-effect margin-top-10" style="font-size: 20px; font-weight: bold;">Create Q Party<i class="icon-feather-chevrons-right"></i></button>
 						</form>

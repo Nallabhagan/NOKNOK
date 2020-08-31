@@ -3,24 +3,49 @@
 namespace App\Http\Controllers;
 
 use App\Invite;
+use App\Mail\QPartyInvitationMail;
 use App\QParty;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use App\Mail\QPartyInvitationMail;
 use Mail;
+use Vinkla\Hashids\Facades\Hashids;
 
 class QuestionPartyController extends Controller
 {
-    public function create_profile()
+    public function create_profile(Request $request)
     {
-    	return view('qparty.new_party.create_party');
+
+        if($request->has('member')) {
+            $member_id = Hashids::connection('user')->decode($request->query('member'))[0];
+
+            if(Auth::id() != $member_id) // avoid invite for same login user
+            {
+                return view('qparty.new_party.create_party',compact('member_id'));
+            } else {
+                return redirect('qparty/create_profile');
+            }
+            
+        } else {
+            return view('qparty.new_party.create_party');
+        }
     }
 
     public function store(Request $request)
     {
+        $member_id = NULL;
+        $invite_email = "";
+        if(isset($request->member_token))
+        {
+            $member_id = Hashids::connection('user')->decode($request->member_token)[0];
+            $invite_email = User::select('email')->where(['id' => $member_id])->first()['email'];
+        } else {
+             $invite_email = $request->invite_email;
+        }
 
+        
     	try
         {
             if($request->qparty_image != null)
@@ -54,6 +79,7 @@ class QuestionPartyController extends Controller
                 'description' => $request->qparty_description,
                 'image' => $new_name,
                 'slug' => $slug,
+                'member_id' => $member_id,
                 'status' => "SAVED"
             ]);
             if($data)
@@ -66,7 +92,7 @@ class QuestionPartyController extends Controller
 
                 //create a new invite record
                 $invite = Invite::create([
-                    'email' => $request->invite_email,
+                    'email' => $invite_email,
                     'token' => $token,
                     'invite_id' => $data->id,
                     'type' => "qparty"
@@ -75,7 +101,21 @@ class QuestionPartyController extends Controller
                 {
                     $url = url('qparty')."/".$slug;
                     $qparty_id = $data->id;
-                    $mail = Mail::to($request->invite_email)->send(new QPartyInvitationMail($qparty_id));
+                    if(isset($request->member_token)) 
+                    {
+                        // for noknok member to send noknok notification
+                        $details = [
+                            "notification_message" => "Invited you for a QParty",
+                            "user_id" => Auth::id(),
+                            "qparty_url" => $url
+                        ];
+                        $notify_user = User::find($member_id);
+                        $notify_user->notify(new \App\Notifications\InviteQparty($details));
+                    } else {
+                        // for new member to send email
+                        $mail = Mail::to($invite_email)->send(new QPartyInvitationMail($qparty_id));
+                    }
+                    
                     return redirect($url);
                 }
             }

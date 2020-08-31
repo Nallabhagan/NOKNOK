@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>Preview Interview</h2>
+					<h2>Preview Interview </h2>
 					<nav id="breadcrumbs">
 						<ul>
 							<li><a href="{{ url('/') }}">Home</a></li>
@@ -44,6 +44,7 @@
 							</h4>
 						@endif
 		                <h3>{{ $title }}</h3> 
+		                
 		                <p>{{ $description }}</p> 
 		                <form action="{{ route('publish_interview') }}" method="POST" enctype="multipart/form-data">
 		                	@csrf
@@ -81,4 +82,15 @@
         </div>
     </div>
     <!-- Sign In Popup / End -->
+@endsection
+@section('scripts')
+	<script type="text/javascript">
+		$(document).ready(function() {
+			history.pushState(null, null, location.href);
+            window.onpopstate = function () {
+                history.go(1);
+            };
+		});
+        
+	</script>
 @endsection
