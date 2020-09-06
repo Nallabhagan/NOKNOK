@@ -1148,13 +1148,13 @@ ul.twPc-Arrange {
   font-size: 13px;
 }
 
-.post .post-add-comment-avature img {
+.post-add-comment-avature img {
   width: 35px;
   border-radius: 100%;
   margin-top: 5px;
 }
 
-.post .post-add-comment {
+.post-add-comment {
   transition: all .2s ease;
   display: flex;
   position: relative;
@@ -1162,7 +1162,7 @@ ul.twPc-Arrange {
   overflow: hidden;
 }
 
-.post .post-add-comment-text-area input {
+.post-add-comment-text-area input {
   border: 0;
   width: 100%;
   box-shadow: none;
@@ -1174,7 +1174,7 @@ ul.twPc-Arrange {
   margin: 0px!important;
 }
 
-.post .post-add-comment-text-area {
+.post-add-comment-text-area {
   background-color: #f1f3f4;
   margin-left: 5px;
   position: relative;
@@ -1184,12 +1184,11 @@ ul.twPc-Arrange {
   padding: 3px 15px;
 }
 
-.post .post-add-comment-text-area .icons {
+.post-add-comment-text-area .icons {
   position: absolute;
   right: 15px;
   top: 8px;
 }
-
 .post .post-add-comment-text-area .icons span {
   font-size: 19px;
   margin-left: 10px;

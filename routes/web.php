@@ -35,6 +35,8 @@ Route::post('create-interview/publish_interview/', 'QuestionController@publish_i
 Route::get('{interview:slug}', 'InterviewController@show_interview_questions');
 Route::post('save-interview', 'InterviewController@save_interview')->name('submit_interview');
 Route::get('interview/{user}/{slug:slug}', 'InterviewController@show_full_interview');
+Route::post('interview/comments', 'Interview\CommentsController@save_comment')->name('interview-comment');
+
 //End Question & Answer - Full Interviews Routes
 
 //Star answer

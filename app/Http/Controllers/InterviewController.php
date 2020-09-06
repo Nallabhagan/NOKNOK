@@ -66,7 +66,7 @@ class InterviewController extends Controller
                 $notify_user->notify(new \App\Notifications\InterviewAnswered($details));
 
 
-                $url = url('interview')."/".Hashids::connection('answer_slug')->encode(Auth::id())."/".$slug;
+                $url = url('user')."/".Hashids::connection('user')->encode(Auth::id())."/";
                 return redirect($url);
             }
         }

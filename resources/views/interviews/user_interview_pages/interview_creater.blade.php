@@ -6,17 +6,21 @@
         $title = "";
         if(Helper::user_media_house_id($interview->user_id) != NULL)
         {
-            $title = Helper::media_name(Helper::user_media_house_id($interview->user_id))." would like to interview on ".$interview->title;
+            $title = Helper::media_name(Helper::user_media_house_id($interview->user_id))." would like to interview you | ".$interview->title;
         } else {
-            $title = Helper::username($interview->user_id)." Created an Interview";
+            $title = Helper::username($interview->user_id)." would like to interview you | ".$interview->title;
         }
         
     @endphp
-    <meta property="og:url"           content="{{ url('/') }}/{{ $interview->slug }}" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="{{ $title }}" />
-    <meta property="og:description"   content="Give your interview" />
-    <meta property="og:image"         content="{{ url('assets/interview_thumbnails') }}/{{ $interview->thumbnail_image }}" />
+    
+    <meta property="og:description" content="{{ $interview->description }}" />
+    <meta property="og:title" content="{{ $title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ url('/') }}/{{ $interview->slug }}" />
+    <meta property="og:image" content="{{ url('assets/interview_thumbnails') }}/{{ $interview->thumbnail_image }}" />
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="200" />
+    <meta property="og:site_name" content="NOKNOK.qa" />
     <meta property="fb:app_id" content="2714676228810928" />
     
 @endsection
