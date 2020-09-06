@@ -23,7 +23,7 @@
                            <a href="{{ url('interview') }}/{{ Hashids::connection('answer_slug')->encode($interview->user_id) }}/{{ $interview->slug }}" class="button primary block small uk-width-expand"> <i class="uil-star"></i> Read Interview </a>
                         </div>
 					</div>--}}
-					<div class="photo-box photo-category-box small">
+					<div class="photo-box photo-category-box small box-shadow border">
 			  				
 			  			<div class="utf-opening-box-content-part">
 			  				@php
@@ -31,10 +31,19 @@
 			  				@endphp
 
 			  				<p>{{ $data['question'] }} </p>
-							<h3>"{{ Str::limit($data['answer'], 90) }}"
-								
-								<br /><a href="{{ $data['profile_url'] }}">- {{ $data['user_name'] }}</a>
-							</h3>	
+							<h3>"{{ Str::limit($data['answer'], 50) }}"
+								{{-- <a href="{{ $data['profile_url'] }}">{{ $data['user_name'] }}</a> --}}
+							</h3>
+							<div class="post-heading p-0">
+								<div class="post-avature">
+									<img src="{{ $data['profile_pic'] }}" alt="">
+								</div> 
+								<div class="post-title mt-2">
+									<h4>
+										<a href="{{ $data['profile_url'] }}"> {{ $data['user_name'] }} </a> 
+									</h4>
+								</div>
+							</div>	
 							<p><a href="{{ $data['interview_url'] }}" class="btn btn-primary btn-sm font-weight-bold mt-3">View More</a></p>
 			  			</div>
 					</div>

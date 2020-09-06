@@ -1,6 +1,6 @@
 @foreach($media_houses as $media_house)
 	@if($media_house->user_id != Auth::id())
-		<div class="col-xl-3 col-md-6 col-sm-12">
+		<div class="col-xl-3 col-md-6 col-sm-12 mb-2">
 		  	<div class="utf-company-inner-alignment">
 			    <div class="company">
 			      	<span class="company-logo">
@@ -8,7 +8,7 @@
 			      	</span>
 			      	<h4><a href="{{ url('user') }}/{{ Hashids::connection('user')->encode($media_house->user_id) }}">{{ $media_house->name }}</a></h4>
 			      	<p class="text-muted">{{ Helper::username($media_house->user_id) }}</p>
-			      	<p>{{ Str::limit($media_house->description, 50)}}</p>
+			      	<p>{{ Str::limit($media_house->description, 45)}}</p>
 			      	@auth
 			      		<span id="follow_status{{ Hashids::connection('user')->encode($media_house->user_id) }}">
 			      			@if(Helper::follow_check(Auth::id(),$media_house->user_id))

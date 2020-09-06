@@ -50,6 +50,11 @@
       <div class="row">
         <div class="utf-companies-list-aera">
           <div class="col-xl-12">
+            <div class="utf-section-headline-item centered margin-top-0 margin-bottom-40">
+              <span>NOKNOK</span>
+              <h3>Q SPACE</h3>
+              <div class="utf-headline-display-inner-item">Follow</div>
+            </div>
             <div class="row">
               <x-home.media-house-component />
             </div>
@@ -67,7 +72,7 @@
         <div class="col-xl-12">
           <div class="utf-section-headline-item centered margin-top-0 margin-bottom-40">
             <span>NOKNOK</span>
-            <h3>NOKNOK STARS</h3>
+            <h3>Q PARTY</h3>
             <div class="utf-headline-display-inner-item">Your Questions</div>
           </div>
           <x-home.ask-question></x-home.ask-question>
@@ -87,21 +92,6 @@
           </div>
         </div>        
         <x-home.best-interviews />
-      </div>
-    </div>
-  </div>
-
-  <div class="section margin-top-60 margin-bottom-50">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-12">
-          <div class="utf-section-headline-item centered margin-top-0 margin-bottom-40">
-            <span>NOKNOK</span>
-            <h3>Exclusive Interviews</h3>
-            <div class="utf-headline-display-inner-item">your opinions</div>
-          </div>
-        </div>        
-        <x-home.exclusive-interviews />
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@
         <img src="{{ Helper::user_profile_pic(Auth::id()) }}" alt="">
       </div>
       <div class="post-new-media-input">
-        <input type="text" class="uk-input" placeholder="What's Your Mind ? {{ Auth::user()->name }}">
+        <input type="text" class="uk-input" placeholder="Share your personal opinion.! {{ Auth::user()->name }}">
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
           <img src="{{ Helper::user_profile_pic(Auth::id()) }}" alt="">
         </div>
         <div class="post-new-media-input">
-          <textarea style="box-shadow: none;" placeholder="What's Your Mind ? {{ Auth::user()->name }}!" name="nokit_content" required></textarea>
+          <textarea style="box-shadow: none;" placeholder="Share your personal opinion.! {{ Auth::user()->name }}!" name="nokit_content" required></textarea>
         </div>
       </div>
       <hr>

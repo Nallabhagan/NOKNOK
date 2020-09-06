@@ -8546,8 +8546,8 @@ ul.main_popular_categories_list li a:hover .utf_box i {
 	opacity: 0.85;
 }*/
 .photo-box.small {
-	height: 400px;
-	margin-bottom: 30px;
+	height: 300px;
+	/*margin-bottom: 30px;*/
 	position:relative;
 }
 /*.photo-box.small:hover {
@@ -8565,16 +8565,16 @@ ul.main_popular_categories_list li a:hover .utf_box i {
 	padding: 20px
 }
 .photo-box.small .utf-opening-box-content-part p {
-	font-size: 23px;
-	font-weight: 600;
-	color: #ff8a00;
-	line-height: 30px;
-}
-.photo-box.small .utf-opening-box-content-part h3 {
 	font-size: 20px;
 	font-weight: 600;
+	color: #ff8a00;
+	line-height: 28px;
+}
+.photo-box.small .utf-opening-box-content-part h3 {
+	font-size: 18px;
+	font-weight: 600;
 	color: #000;
-	line-height: 30px;
+	line-height: 28px;
 }
 .photo-box.small .utf-opening-box-content-part span {
 	color: #fff;

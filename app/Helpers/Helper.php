@@ -18,6 +18,11 @@ class Helper
 		return $user->name;
 	}
 
+	public static function user_social_links($id) {
+		$user = User::select('fb','twitter','linkedin','insta')->where(["id" => $id])->first();
+		return $user;
+	}
+
 	public static function user_media_house_id($id) {
 		$media_house_id = User::select('media_house')->where(["id" => $id])->first();
 		return $media_house_id->media_house;
@@ -61,6 +66,7 @@ class Helper
 			"answer" => $answer->answers[$answer_index],
 			"user_name" => self::username($answer->user_id),
 			"profile_url" => url('user').'/'.Hashids::connection('user')->encode($answer->user_id),
+			"profile_pic" => self::user_profile_pic($answer->user_id),
 			"interview_url" => url('interview').'/'.Hashids::connection('answer_slug')->encode($answer->user_id).'/'.$answer->slug,
 			"question" => $question->questions[$answer_index]
 		];

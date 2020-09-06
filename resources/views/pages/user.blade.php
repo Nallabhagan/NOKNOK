@@ -2,7 +2,7 @@
 @section('social-media-meta-tags')
   @if(Helper::user_media_house_id($user_id) != NULL)
     <meta property="og:description" content="{{ Helper::media_description(Helper::user_media_house_id($user_id)) }}" />
-    <meta property="og:title" content="{{ Helper::media_name(Helper::user_media_house_id($user_id)) }} | Follow My Media House" />
+    <meta property="og:title" content="{{ Helper::media_name(Helper::user_media_house_id($user_id)) }} | Follow My Q Space" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url('user') }}/{{ Hashids::connection('user')->encode($user_id) }}" />
     <meta property="og:image" content="{{ Helper::user_profile_pic($user_id) }}" />

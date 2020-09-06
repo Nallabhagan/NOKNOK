@@ -54,8 +54,7 @@ class ProfileController extends Controller
     {
 
     	$rules = array(
-    	  'name'  => 'required',
-    	  'mobile_number' => 'numeric|min:10'
+    	  'name'  => 'required'
     	);
 
     	$error = Validator::make($request->all(), $rules);
@@ -74,20 +73,6 @@ class ProfileController extends Controller
 
     public function social_links(Request $request)
     {
-    	$regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
-    	$rules = array(
-    	  'fb' => 'regex:'.$regex,
-    	  'twitter' => 'regex:'.$regex,
-    	  'linkedin' => 'regex:'.$regex,
-    	  'insta' => 'regex:'.$regex,
-    	);
-
-    	$error = Validator::make($request->all(), $rules);
-    	
-    	if($error->fails())
-    	{
-    	    return redirect()->back()->withErrors(['errors' => $error->errors()->all()]);
-    	}
 
     	$data = User::where(["id" => Auth::id()])->update(["fb" => $request->fb, "twitter" => $request->twitter, "linkedin" => $request->linkedin, "insta" => $request->insta]);
     	if($data)
