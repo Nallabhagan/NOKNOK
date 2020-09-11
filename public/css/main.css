@@ -1179,15 +1179,14 @@ ul.twPc-Arrange {
   margin-left: 5px;
   position: relative;
   width: 100%;
-  border-radius: 50px;
   overflow: hidden;
   padding: 3px 15px;
 }
 
 .post-add-comment-text-area .icons {
   position: absolute;
-  right: 15px;
-  top: 8px;
+  right: 0px;
+  top: 8%;
 }
 .post .post-add-comment-text-area .icons span {
   font-size: 19px;

@@ -29,6 +29,9 @@
 				<form class="commentForm" autocomplete="off" id="{{ Hashids::connection('nokit')->encode($id) }}">
                     @csrf
                     <input type="text" placeholder="Write your comment..." id="addComment{{ Hashids::connection('nokit')->encode($id) }}">
+                    <div class="icons">
+                        <button type="submit" class="btn btn-primary btn-sm m-0">submit</button>
+                    </div>
                 </form>
 			</div>
 		</div>

@@ -21,7 +21,7 @@
 @section('content') 
 
 
-<div class="container">
+<div class="col-md-12 pl-0 pr-0">
 	<div class="row">
         <div class="col-xl-12 text-center">
             <h1 class="interview_title_desktop">{{ Helper::interview_question_details($interview->question_id)->title }}</h1>
@@ -87,6 +87,8 @@
 						</ul>
 					</div>
 				</div>
+				<hr />
+				<span class="pl-3 font-weight-bold" style="font-size: 18px;color: #000;"><strong>Comments:-</strong></span>
 				<x-interview.interview-comments slug="{{ Helper::interview_question_details($interview->question_id)->slug }}" />
 			</div>
 			

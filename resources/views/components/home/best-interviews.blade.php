@@ -31,7 +31,7 @@
 			  				@endphp
 
 			  				<p>{{ $data['question'] }} </p>
-							<h3>"{{ Str::limit($data['answer'], 50) }}"
+							<h3>"{{ Str::limit($data['answer'], 70) }}"
 								{{-- <a href="{{ $data['profile_url'] }}">{{ $data['user_name'] }}</a> --}}
 							</h3>
 							<div class="post-heading p-0">
@@ -43,8 +43,11 @@
 										<a href="{{ $data['profile_url'] }}"> {{ $data['user_name'] }} </a> 
 									</h4>
 								</div>
+								<div class="post-btn-action">
+								    <a href="{{ $data['interview_url'] }}" class="btn btn-primary btn-sm font-weight-bold mt-1">View More</a>
+								</div>
 							</div>	
-							<p><a href="{{ $data['interview_url'] }}" class="btn btn-primary btn-sm font-weight-bold mt-3">View More</a></p>
+							
 			  			</div>
 					</div>
 					

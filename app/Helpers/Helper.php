@@ -14,8 +14,12 @@ use Vinkla\Hashids\Facades\Hashids;
 class Helper
 {
 	public static function username($id) {
-		$user = User::select('name')->where(["id" => $id])->first();
-		return $user->name;
+		$user = User::select('name','media_house')->where(["id" => $id])->first();
+		if($user->media_house != NULL) {
+			return self::media_name($user->media_house);
+		} else {
+			return $user->name;
+		}
 	}
 
 	public static function user_social_links($id) {
