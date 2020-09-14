@@ -2,7 +2,7 @@
 
 namespace App\View\Components\Home;
 
-use App\StarAnswer;
+use App\Interview;
 use Illuminate\View\Component;
 
 class BestInterviews extends Component
@@ -24,7 +24,7 @@ class BestInterviews extends Component
      */
     public function render()
     {
-        $interviews = StarAnswer::inRandomOrder()->select('*')->limit(3)->get();
+        $interviews = Interview::inRandomOrder()->select('*')->limit(6)->get();
         return view('components.home.best-interviews',compact('interviews'));
     }
 }

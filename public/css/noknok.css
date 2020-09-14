@@ -8560,9 +8560,9 @@ ul.main_popular_categories_list li a:hover .utf_box i {
 	margin: 0 auto;
 	text-align: left;
 	bottom: auto;
-	top: 55%;
+	top: 50%;
 	transform: translateY(-50%);
-	padding: 20px
+	padding: 10px;
 }
 .photo-box.small .utf-opening-box-content-part p {
 	font-size: 20px;

@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('social-media-meta-tags')
+<title>NOKNOK | LOGIN</title>
+@endsection
 @section('content')
 <div id="titlebar" class="gradient">
     <div class="container">

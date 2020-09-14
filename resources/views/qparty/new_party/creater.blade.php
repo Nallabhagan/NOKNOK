@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('social-media-meta-tags')
+<title>NOKNOK | Q PARTY | {{ $qparty->title }}</title>
+@endsection
 @section('content') 
 <div class="container">
     <div class="row">

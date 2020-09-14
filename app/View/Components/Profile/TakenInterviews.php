@@ -26,9 +26,9 @@ class TakenInterviews extends Component
     public function render()
     {
        
-        $interviews = DB::table('questions')
-                    ->select('questions.*','interviews.user_id as answer_user_id')
-                    ->join('interviews','interviews.question_id','=','questions.id')
+        $interviews = DB::table('interviews')
+                    ->select('interviews.*','questions.questions')
+                    ->join('questions','interviews.question_id','=','questions.id')
                     ->where(['questions.user_id' => $this->id])
                     ->inRandomOrder()
                     ->paginate(8);

@@ -14,12 +14,8 @@ use Vinkla\Hashids\Facades\Hashids;
 class Helper
 {
 	public static function username($id) {
-		$user = User::select('name','media_house')->where(["id" => $id])->first();
-		if($user->media_house != NULL) {
-			return self::media_name($user->media_house);
-		} else {
-			return $user->name;
-		}
+		$user = User::select('name')->where(["id" => $id])->first();
+		return $user->name;
 	}
 
 	public static function user_social_links($id) {
@@ -49,32 +45,6 @@ class Helper
 	public static function interview_question_details($question_id) {
 		$interview = Question::find($question_id);
 		return $interview;
-	}
-
-	public static function star_answer_check($interview_id,$answer_index)
-	{
-		$row = StarAnswer::where(['interview_id'=>$interview_id,'answer_index'=>$answer_index])->first();
-		if($row != null)
-		{
-			return true;
-		}
-	}
-
-	public static function get_star_answer($interview_id,$answer_index)
-	{
-		$answer = Interview::select('question_id', 'slug','user_id','answers')->where(["id" => $interview_id])->first();
-
-		$question = Question::select('questions')->where(["id" => $answer->question_id])->first();
-		
-		$data = [
-			"answer" => $answer->answers[$answer_index],
-			"user_name" => self::username($answer->user_id),
-			"profile_url" => url('user').'/'.Hashids::connection('user')->encode($answer->user_id),
-			"profile_pic" => self::user_profile_pic($answer->user_id),
-			"interview_url" => url('interview').'/'.Hashids::connection('answer_slug')->encode($answer->user_id).'/'.$answer->slug,
-			"question" => $question->questions[$answer_index]
-		];
-		return $data;
 	}
 
 	public static function media_name($id) {

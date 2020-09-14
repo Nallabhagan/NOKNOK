@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('social-media-meta-tags')
+  <title>NOKNOK | USER | {{ Helper::username($user_id) }} </title>
   @if(Helper::user_media_house_id($user_id) != NULL)
     <meta property="og:description" content="{{ Helper::media_description(Helper::user_media_house_id($user_id)) }}" />
     <meta property="og:title" content="{{ Helper::media_name(Helper::user_media_house_id($user_id)) }} | Follow My Q Space" />
@@ -28,7 +29,7 @@
       <div>
         <nav class="responsive-tab">
           <ul>
-            <li class="tablinks" onclick="openTab(event, 'nokit')" id="defaultOpen"><a>Nok It</a></li>
+            <li class="tablinks" onclick="openTab(event, 'nokit')" id="defaultOpen"><a>Ask It</a></li>
             <li class="tablinks" onclick="openTab(event, 'qparty')"><a>Q Party</a></li>
             <li class="tablinks" onclick="openTab(event, 'givenInterview')" id="defaultOpen"><a>Interview Given</a></li>
             <li class="tablinks" onclick="openTab(event, 'takenInterview')"><a>Interview Taken</a></li>

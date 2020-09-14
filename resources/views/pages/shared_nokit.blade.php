@@ -1,11 +1,14 @@
 @extends('layouts.app')
 @section('social-media-meta-tags')
+  <title>NOKNOK | ASK IT | {{ Helper::username($user_id) }}</title>
   @if(Helper::user_media_house_id($user_id) != NULL)
     <meta property="og:description" content="{{ $content }}" />
-    <meta property="og:title" content="NokIt | Follow My Media House" />
+    <meta property="og:title" content="NokIt | {{ Helper::username($user_id) }} has asked an question" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url('nokit') }}/{{ Hashids::connection('nokit')->encode($id) }}" />
     <meta property="og:image" content="{{ Helper::user_profile_pic($user_id) }}" />
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="200" />
     <meta property="fb:app_id" content="2714676228810928" />
   @endif
 @endsection

@@ -39,9 +39,12 @@ class InterviewController extends Controller
 
     //to save answers
     public function save_interview(Request $request) {
+
         if(in_array(null, $request->answers, true)) {
             Session::flash('error', "Submit All the Answers");
-            return redirect()->back();
+            return response()->json([
+                'error' => true,
+            ]);
         } else {
             $question_id = Hashids::connection('create_question')->decode($request->question_token)[0];
             $question_info = Question::find($question_id);
@@ -67,7 +70,9 @@ class InterviewController extends Controller
 
 
                 $url = url('user')."/".Hashids::connection('user')->encode(Auth::id())."/";
-                return redirect($url);
+                return response()->json([
+                    'message' => true,
+                ]);
             }
         }
     }

@@ -1,6 +1,7 @@
 @extends('layouts.app')
-@section('social-media-meta-tags')
 
+@section('social-media-meta-tags')
+    <title>NOKNOK | INTERVIEW | {{ $interview->slug }}</title>
     <meta property="og:url"           content="{{ url('/') }}/{{ $interview->slug }}" />
     <meta property="og:type"          content="website" />
     @php
@@ -29,12 +30,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xl-12 text-center">
-            @if (Session::has('error'))
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Error!</strong> {{ Session::get('error') }}
-                </div>    
-            @endif
+            
             <h1 class="interview_title_desktop">{{ $interview->title }}</h1>
         </div>
     </div>
@@ -57,8 +53,8 @@
 
                 </div>
                 <p class="interview_description">{{ $interview->description }}</p>
-               
-                <form action="{{ route('submit_interview') }}" method="POST">
+                
+                <form id="answer_form" autocomplete="off">
                     @csrf
                     <input type="hidden" name="question_token" value="{{ Hashids::connection('create_question')->encode($interview->id) }}">
                     <input type="hidden" name="title" value="{{ $interview->title }}">
@@ -71,6 +67,12 @@
                             @endauth
                         </div>
                     @endfor
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Error!</strong> {{ Session::get('error') }}
+                        </div>    
+                    @endif
                     @auth
                         <button type="submit" class="button full-width utf-button-sliding-icon ripple-effect margin-top-10" style="font-size: 20px; font-weight: bold;" id="change_action">Finish Interview <i class="icon-feather-chevrons-right"></i></button>
                     @else 
@@ -90,20 +92,36 @@
       o.style.height = "1px";
       o.style.height = (25+o.scrollHeight)+"px";
     }
-    //to disable button until redirect to next page
-    $(document).on("click","#change_action",function(){
-        var i,flag=0;
-        var count = parseInt("{{ $i }}");
-        for(i=0;i<count;i++) {
-            if($("#answer"+i).val() != "") {
-                flag++;
-            }
-        }
-        if(flag == count)
-        {
-            $("#change_action").attr("disabled","disabled");
-            $("#change_action").html("Finishing...");  
-        }
-    });
+    @auth
+        $(document).ready(function(){
+           
+            $("#answer_form").on("submit", function(event){
+                event.preventDefault();
+                $("#change_action").prop('disabled', true);
+                $("#change_action").html("Finishing...");
+                $.ajax({
+                    url:"{{ route('submit_interview') }}",
+                    method:"POST",
+                    data:new FormData(this),
+                    dataType:'JSON',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success:function(data)
+                    {
+                        if(data.message) {
+                            var url = "{{ url('noknok/give-your-interview') }}";
+                            window.location.href = url;
+                        } else if(data.error) {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+        });
+    @endauth
+    
+
+    
 </script>
 @endsection

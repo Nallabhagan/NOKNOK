@@ -30,7 +30,7 @@
 			<div class="post-add-comment-text-area">
 				<form class="commentForm" autocomplete="off" id="{{ Hashids::connection('nokit')->encode($id) }}">
                     @csrf
-                    <input type="text" placeholder="Write your comment..." id="addComment{{ Hashids::connection('nokit')->encode($id) }}">
+                    <input type="text" placeholder="What's your answer...{{ Helper::username(Auth::user()->id) }}" id="addComment{{ Hashids::connection('nokit')->encode($id) }}">
                 </form>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 				<img src="{{ url('images/user_small_1.jpg') }}" alt="">
 			</div>
 			<div class="post-add-comment-text-area">
-				<input type="text" placeholder="Write your comment...">
+				<input type="text" placeholder="What's your answer...">
 			</div>
 		</a>
 	@endauth

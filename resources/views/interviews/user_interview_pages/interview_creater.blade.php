@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('social-media-meta-tags')
+    <title>NOKNOK | INTERVIEW | {{ $interview->title }}</title>
     <script data-ad-client="ca-pub-5579049466595431" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e6c61d570a78000121d9aa3&product=inline-share-buttons' async='async'></script>
     @php

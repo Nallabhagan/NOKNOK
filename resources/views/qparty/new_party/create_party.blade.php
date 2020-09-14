@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('social-media-meta-tags')
+<title>NOKNOK | CREATE Q PARTY </title>
+@endsection
 @section('content')
 	
 	<div class="container pt-2"> 

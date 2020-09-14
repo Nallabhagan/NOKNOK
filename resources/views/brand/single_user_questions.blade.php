@@ -1,6 +1,7 @@
 @extends('layouts.app')
-@section('social-media-meta-tags')
 
+@section('social-media-meta-tags')
+	<title>NOKNOK | Q PARTY | QUESTION | {{ $brand->slug }}</title>
     <meta property="og:url"           content="{{ url('brand') }}/{{ $brand->slug }}" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="NOKNOK STARS | Ask a Question to {{ Helper::username($brand->brand_user_id) }}" />

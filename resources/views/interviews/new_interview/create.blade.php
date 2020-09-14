@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('social-media-meta-tags')
+<title>NOKNOK | CREATE INTERVIEW</title>
+@endsection
 @section('content')
 	<!-- Titlebar -->
 	<div id="titlebar" class="gradient">

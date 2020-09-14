@@ -2,7 +2,7 @@
 
 namespace App\View\Components\Interview;
 
-use App\StarAnswer;
+use App\Interview;
 use Illuminate\View\Component;
 
 class RelatedInterviews extends Component
@@ -25,7 +25,7 @@ class RelatedInterviews extends Component
      */
     public function render()
     {
-        $interviews = StarAnswer::inRandomOrder()->select('*')->limit(6)->get();
+        $interviews = Interview::inRandomOrder()->select('*')->limit(6)->get();
         return view('components.interview.related-interviews', compact('interviews'));
     }
 }

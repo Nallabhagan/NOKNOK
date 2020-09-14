@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Vinkla\Hashids\Facades\Hashids;
 
+
 class PagesController extends Controller
 {
 	public function home_page() {
@@ -20,7 +21,8 @@ class PagesController extends Controller
     }
 
     public function user_profile($user) {
-    	$user_id = Hashids::connection('user')->decode($user)[0];
+        $user_id = Hashids::connection('user')->decode($user)[0];
+        
         $feeds = NokIt::orderBy("id","DESC")->select('*')->where([["user_id", "=", $user_id],["status", "=", "POSTED"]])->get();
     	return view('pages.user',compact('user_id','feeds'));
     }

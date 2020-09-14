@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
-
+@section('social-media-meta-tags')
+<title>NOKNOK | DASHBORAD | INTERVIEW</title>
+@endsection
 @section('content')
 
 

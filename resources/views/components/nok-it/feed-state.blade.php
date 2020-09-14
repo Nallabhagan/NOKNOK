@@ -12,7 +12,7 @@
             </a href="{{ url('login') }}">
     @endauth
     
-    <div class="post-state-btns"> <i class="icon-feather-message-circle"></i> {{ Helper::comment_count($id) }} <span> Comments</span>
+    <div class="post-state-btns"> <i class="icon-feather-message-circle"></i> {{ Helper::comment_count($id) }} <span> Answers</span>
     </div>
     <div class="post-state-btns" uk-toggle="target: #modal-close-default{{ $id }}"> <i class="icon-feather-share-2"></i><span> Share </span>
     </div>

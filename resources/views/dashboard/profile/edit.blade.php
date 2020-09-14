@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
-
+@section('social-media-meta-tags')
+<title>NOKNOK | DASHBORAD | PROFILE SETTIGNS</title>
+@endsection
 @section('content')
 
 

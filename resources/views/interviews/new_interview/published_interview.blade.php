@@ -1,6 +1,7 @@
 @extends('layouts.app')
-@section('social-media-meta-tags')
 
+@section('social-media-meta-tags')
+    <title>NOKNOK | PUBLISHED INTERVIEW</title>
     @foreach($questions as $interview)
         <meta property="og:url"           content="{{ url('/') }}/{{ $interview->slug }}" />
         <meta property="og:type"          content="website" />

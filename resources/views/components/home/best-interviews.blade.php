@@ -5,46 +5,48 @@
 			@foreach($interviews as $interview)
 				<div class="star_answer col-md-4">
 					
-					{{-- <div class="events-list">
-						<a href="#" class="event-cover">
-						<img src="{{ url('assets/interview_thumbnails') }}/{{ Helper::interview_question_details($interview->question_id)->thumbnail_image }}" alt="">
-						</a>
-						<div class="event-info">
-							<div class="event-info-date">
-								<img src="{{ Helper::user_profile_pic($interview->user_id) }}" alt="">
-							</div>
-							<h4 class="events-list-name">
-								<a href="{{ url('user') }}/{{ Hashids::connection('user')->encode($interview->user_id) }}"> {{ Helper::username($interview->user_id) }}</a>
-							</h4>
-							<p class="mt-3">{{ Str::limit(Helper::interview_question_details($interview->question_id)->description, 100)}}</p>
-							
-						</div>
-						<div class="event-btns uk-flex">
-                           <a href="{{ url('interview') }}/{{ Hashids::connection('answer_slug')->encode($interview->user_id) }}/{{ $interview->slug }}" class="button primary block small uk-width-expand"> <i class="uil-star"></i> Read Interview </a>
-                        </div>
-					</div>--}}
+					
 					<div class="photo-box photo-category-box small box-shadow border">
-			  				
+			  			
 			  			<div class="utf-opening-box-content-part">
+			  				
+			  				<div class="post-heading p-0">
+			  					<div class="post-avature">
+			  						<img src="{{ Helper::user_profile_pic(Helper::interview_question_details($interview->question_id)["user_id"]) }}" alt="">
+			  					</div> 
+			  					<div class="post-title">
+			  						<h4>
+			  							<a href="{{ url("user") }}/{{ Hashids::connection("user")->encode(Helper::interview_question_details($interview->question_id)["user_id"]) }}">
+			  								{{ Helper::username(Helper::interview_question_details($interview->question_id)["user_id"]) }}
+			  							</a> 
+			  						</h4> 
+			  						<h6> {{ Helper::interview_question_details($interview->question_id)["created_at"]->diffForHumans() }} </h6>
+			  					</div>
+			  				</div>
 			  				@php
-			  					$data = Helper::get_star_answer($interview->interview_id,$interview->answer_index);
-			  				@endphp
+			  					$questions = Helper::interview_question_details($interview->question_id)["questions"];
+			  					$question_key = array_rand($questions);
 
-			  				<p>{{ $data['question'] }} </p>
-							<h3>"{{ Str::limit($data['answer'], 70) }}"
-								{{-- <a href="{{ $data['profile_url'] }}">{{ $data['user_name'] }}</a> --}}
+			  					$answers = $interview->answers;
+			  				@endphp
+			  				
+			  				<p class="mt-1">
+			  					{{ Str::limit($questions[$question_key], 70) }}
+			  				</p>
+			  				<h3 class="mt-1">"{{ Str::limit($answers[$question_key], 70) }}"
 							</h3>
-							<div class="post-heading p-0">
+			  				
+							<div class="post-heading p-0 mt-1">
 								<div class="post-avature">
-									<img src="{{ $data['profile_pic'] }}" alt="">
+									<img src="{{ Helper::user_profile_pic($interview->user_id) }}" alt="">
 								</div> 
 								<div class="post-title mt-2">
 									<h4>
-										<a href="{{ $data['profile_url'] }}"> {{ $data['user_name'] }} </a> 
+										<a href="{{ url("user") }}/{{ Hashids::connection("user")->encode($interview->user_id) }}">{{ Helper::username($interview->user_id) }} </a> 
 									</h4>
 								</div>
 								<div class="post-btn-action">
-								    <a href="{{ $data['interview_url'] }}" class="btn btn-primary btn-sm font-weight-bold mt-1">View More</a>
+								    <a href="{{ url("interview") }}/{{ Hashids::connection("answer_slug")->encode($interview->user_id) }}/{{ $interview->slug }}" class="btn btn-primary btn-sm font-weight-bold mt-1">Read full interview</a>
 								</div>
 							</div>	
 							

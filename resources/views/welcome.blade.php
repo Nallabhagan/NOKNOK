@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('social-media-meta-tags')
+    <title>NOKNOK - Interview Anyone Share With Everyone </title>
     <script data-ad-client="ca-pub-5579049466595431" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <meta property="og:description" content="Interview Anyone,Share With Everyone, bring out the stories, the opinions and perspectives from the people who you know" />
     <meta property="og:title" content="NOKNOK.qa | Interview Anyone Share With Everyone" />

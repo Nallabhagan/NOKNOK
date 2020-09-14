@@ -5,7 +5,7 @@
         <img src="{{ Helper::user_profile_pic(Auth::id()) }}" alt="">
       </div>
       <div class="post-new-media-input">
-        <input type="text" class="uk-input" placeholder="Share your personal opinion.! {{ Auth::user()->name }}">
+        <input type="text" class="uk-input" placeholder="Ask your question here.. {{ Auth::user()->name }}">
       </div>
     </div>
   </div>
@@ -14,7 +14,7 @@
     <form action="{{ route('nok-it') }}" method="POST" class="post-new uk-animation-slide-top-small">
       @csrf
       <div class="post-new-header">
-        <h4> NOK IT</h4>
+        <h4> ASK IT</h4>
         <!-- close button-->
         <span class="post-new-btn-close" uk-toggle="target: body ; cls: post-focus"
           uk-tooltip="title:Close; pos: left "></span>
@@ -24,7 +24,7 @@
           <img src="{{ Helper::user_profile_pic(Auth::id()) }}" alt="">
         </div>
         <div class="post-new-media-input">
-          <textarea style="box-shadow: none;" placeholder="Share your personal opinion.! {{ Auth::user()->name }}!" name="nokit_content" required></textarea>
+          <textarea style="box-shadow: none;" placeholder="Ask your question here.. {{ Auth::user()->name }}!" name="nokit_content" required></textarea>
         </div>
       </div>
       <hr>
