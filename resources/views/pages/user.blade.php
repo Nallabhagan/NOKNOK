@@ -16,16 +16,7 @@
 <div class="col-md-12 box-shadow" uk-sticky="offset:53;media : @s">
   <div class="container">
     <div class="nav-profile" style="box-shadow: inherit;">
-      <div class="py-md-2 uk-flex-last">
-        @if($user_id == Auth::id())
-          <a href="{{ url('create-interview') }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Create an Interview</a>
-          <a href="{{ url('qparty/create_profile') }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Create Q Party</a>
-        @else
-          <a href="{{ url('create-interview?member=') }}{{ Hashids::connection('user')->encode($user_id) }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Ask for an Interview</a>
-          <a href="{{ url('qparty/create_profile?member=') }}{{ Hashids::connection('user')->encode($user_id) }}" class="btn btn-primary p-2 font-weight-bold mr-2"> <i class="uil-plus"></i> Invite Q Party</a>
-        @endif
-        
-      </div>
+      
       <div>
         <nav class="responsive-tab">
           <ul>
@@ -33,7 +24,6 @@
             <li class="tablinks" onclick="openTab(event, 'qparty')"><a>Q Party</a></li>
             <li class="tablinks" onclick="openTab(event, 'givenInterview')" id="defaultOpen"><a>Interview Given</a></li>
             <li class="tablinks" onclick="openTab(event, 'takenInterview')"><a>Interview Taken</a></li>
-            <li class="tablinks" onclick="openTab(event, 'GiveYourInterview')"><a>Give your Interview</a></li>
           </ul>
         </nav>
         
@@ -42,6 +32,18 @@
   </div>
 </div>
 <div class="container pt-4">
+  <div id="nokit" class="tabcontent">
+    <div class="row">
+      
+      <div class="col-md-6">
+        <x-nok-it.create id="{{ $user_id }}"/>
+        @foreach($feeds as $feed)
+          <x-nok-it.single-feed id="{{ $feed->id }}"/>
+        @endforeach
+      </div>
+      
+    </div>
+  </div> 
   <div id="qparty" class="tabcontent">
     <x-profile.q-party id="{{ $user_id }}"/>
   </div>
@@ -52,23 +54,8 @@
   <div id="takenInterview" class="tabcontent">
     <x-profile.taken-interviews id="{{ $user_id }}"/>
   </div> 
-  <div id="nokit" class="tabcontent">
-    <div class="row">
-      
-      <div class="col-md-6">
-        @if($user_id == Auth::id())
-          <x-nok-it.create />
-        @endif
-        @foreach($feeds as $feed)
-          <x-nok-it.single-feed id="{{ $feed->id }}"/>
-        @endforeach
-      </div>
-      
-    </div>
-  </div> 
-  <div id="GiveYourInterview" class="tabcontent">
-    <x-give-interview />
-  </div> 
+  
+  
 </div>
 
   

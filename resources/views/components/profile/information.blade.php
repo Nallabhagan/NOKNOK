@@ -1,7 +1,7 @@
 @php
 	$social_links = Helper::user_social_links($id);
 @endphp
-<div class="single-page-header mb-0">
+<div class="single-page-header mb-0 pt-2 pb-2">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -42,7 +42,19 @@
 							</h4>
 
 							@if($media_id != NULL)
-								<p class="text-white">{{ Helper::media_description($media_id) }}</p>
+								
+								<p class="text-white">
+									{{ Str::substr(Helper::media_description($media_id), 0, 80) }}
+									
+									<span id="more-veiw" hidden>{{ Str::substr(Helper::media_description($media_id), 80) }}</span>
+									@if(Str::length(Helper::media_description($media_id)) > 80)
+										<span class="btn-more text-primary"
+				                            uk-toggle="target: #more-veiw; animation: uk-animation-fade" style="cursor: pointer;">
+				                            <span id="more-veiw">Read More </span>
+				                            <span id="more-veiw" hidden>Read Less</span>
+				                        </span>
+			                        @endif
+								</p>
 							@endif
 
 							<div class="utf-detail-social-sharing">
@@ -94,7 +106,11 @@
 							
 						</div>
 					</div>
-					
+					<div class="utf-right-side">
+						<div class="col-md-12 pt-0 pb-0">
+							
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
