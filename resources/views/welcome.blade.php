@@ -10,42 +10,26 @@
     <meta property="fb:app_id" content="2714676228810928" />
 @endsection
 @section('content')
-  <!-- Intro Banner -->
-  <div id="demo" class="carousel slide" data-ride="carousel">
-
-    
-    <!-- The slideshow -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="images/banner.jpg" alt="Los Angeles">
-        <div class="carousel-caption">
-          <a href="{{ url('create-interview') }}" class="btn btn-primary btn-lg font-weight-bold text-uppercase">Create Media House</a>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="images/banner2.jpg" alt="Chicago">
-        <div class="carousel-caption">
-          <a href="{{ url('noknok/give-your-interview') }}" class="btn btn-primary btn-lg font-weight-bold text-uppercase">Give your interview</a>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="images/banner3.jpg" alt="Chicago">
-        <div class="carousel-caption">
-          <a href="{{ url('create-interview') }}" class="btn btn-primary btn-lg font-weight-bold text-uppercase">Create an Interview</a>
-        </div>
-      </div>
-      
-    </div>
-    
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </a>
-  </div>
   
+  <div class="section padding-top-65">
+    <div class="container">
+      <div class="row">
+        <div class="utf-companies-list-aera">
+          <div class="col-xl-12">
+            <div class="utf-section-headline-item centered margin-top-0 margin-bottom-40">
+              <span>NOKNOK</span>
+              <h3>Give Your Interview</h3>
+              
+              <p class="utf-slogan-text">Below are some of the interview questions under various subjects. Please give your interview by answering the questions under each interview.</p>
+            </div>
+            <x-give-interview />
+          </div>
+          <!-- Pagination -->
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="section padding-top-65">
     <div class="container">
       <div class="row">

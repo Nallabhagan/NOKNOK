@@ -33,6 +33,7 @@
             <li class="tablinks" onclick="openTab(event, 'qparty')"><a>Q Party</a></li>
             <li class="tablinks" onclick="openTab(event, 'givenInterview')" id="defaultOpen"><a>Interview Given</a></li>
             <li class="tablinks" onclick="openTab(event, 'takenInterview')"><a>Interview Taken</a></li>
+            <li class="tablinks" onclick="openTab(event, 'GiveYourInterview')"><a>Give your Interview</a></li>
           </ul>
         </nav>
         
@@ -64,6 +65,9 @@
       </div>
       
     </div>
+  </div> 
+  <div id="GiveYourInterview" class="tabcontent">
+    <x-give-interview />
   </div> 
 </div>
 
