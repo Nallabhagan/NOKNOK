@@ -21,6 +21,7 @@
               <h3>Give Your Interview</h3>
               
               <p class="utf-slogan-text">Below are some of the interview questions under various subjects. Please give your interview by answering the questions under each interview.</p>
+              <p>If you would like to create a public interview <a href="{{ url("create-interview?public_interview=true") }}" class="text-underline font-weight-bold">click here</a></p>
             </div>
             <x-give-interview />
           </div>

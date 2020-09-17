@@ -25,7 +25,7 @@
     <div class="post-new-type">
       
       @if($id == Auth::id())
-        <a href="{{ url('create-interview') }}" class="btn btn-primary mr-2 font-weight-bold d-inline-block">Create an Interview</a>
+        <a href="{{ url('create-interview') }}" class="btn btn-primary mr-2 font-weight-bold d-inline-block">Take an Interview</a>
         <a href="{{ url('qparty/create_profile') }}" class="btn btn-primary mr-2 font-weight-bold d-inline-block">Create Q Party</a>
       @else
         <a href="{{ url('create-interview?member=') }}{{ Hashids::connection('user')->encode($id) }}" class="btn btn-primary mr-2 font-weight-bold d-inline-block">Ask for an Interview</a>

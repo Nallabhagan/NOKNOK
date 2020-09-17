@@ -31,17 +31,27 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        
-        if($request->has('member')) {
-            //set session for noknok member if current user ask an interview to the noknok user
-            Session::put('member_id', $request->query('member'));
-            $member_id = Hashids::connection('user')->decode(Session::get('member_id'))[0];
-            if($member_id == Auth::id()) {
-                return redirect('create-interview');
-            } else {
-                return view('interviews.new_interview.create');
+        if($request->query('public_interview')) {
+            //create public interview 
+            Session::put('public_interview', $request->query('public_interview'));
+            return view('interviews.new_interview.create');
+        } else {
+            if($request->has('member')) {
+                //delete public interview session if exist
+                if(Session::has('public_interview')) {
+                    $request->session()->forget('public_interview');
+                }
+                //set session for noknok member if current user ask an interview to the noknok user
+                Session::put('member_id', $request->query('member'));
+                $member_id = Hashids::connection('user')->decode(Session::get('member_id'))[0];
+                if($member_id == Auth::id()) {
+                    return redirect('create-interview');
+                } else {
+                    return view('interviews.new_interview.create');
+                }
             }
         }
+        
 
         if($request->has('preview')) {
             $id = $request->query('preview');
@@ -65,6 +75,13 @@ class QuestionController extends Controller
                 return view('interviews.new_interview.preview',compact('id'));  
             }        	
         } else {
+            //delete all the interview related session
+            if(Session::has('public_interview')) {
+                $request->session()->forget('public_interview');
+            }
+            if(Session::has('member_id')) {
+                $request->session()->forget('member_id');
+            }
             return view('interviews.new_interview.create'); 
         }
     }
@@ -74,7 +91,7 @@ class QuestionController extends Controller
     {
     	try {
             $privacy_status = "";
-            if(Auth::id() == 1) {
+            if(Session::has('public_interview')) {
                 $privacy_status = "PUBLIC";
             } else {
                 $privacy_status = "PRIVATE";
@@ -115,22 +132,9 @@ class QuestionController extends Controller
     public function publish_interview(Request $request) {
         $interview_id =  Hashids::connection('create_question')->decode($request->interview_id)[0];
 
-        // notify if current user ask for an interview to the noknok user
-        if(Session::has('member_id')) { 
-            $member_id = Hashids::connection('user')->decode(Session::get('member_id'))[0];
-            $interview_slug = Question::select('slug')->where(['id' => $interview_id])->first()['slug'];
+         
+        
 
-            $url = url('/').'/'.$interview_slug;
-            $details = [
-                "notification_message" => "Invited you for an Interview",
-                "user_id" => Auth::id(),
-                "interview_url" => $url
-            ];
-            $notify_user = User::find($member_id);
-            $notify_user->notify(new \App\Notifications\InviteInterview($details));
-            Session::forget('member_id');//remove session
-            
-        } 
         if($request->interview_thumbnail != null)
         {
             $rules = array(
@@ -156,6 +160,27 @@ class QuestionController extends Controller
         $publish_interview = Question::where(['id' => $interview_id])->update(['status' => 'PUBLISHED','thumbnail_image' => $new_name]);
 
         if($publish_interview) {
+
+            if(Session::has('public_interview')) {
+                $request->session()->forget('public_interview');
+            } else {
+                if(Session::has('member_id')) { 
+                    // notify if current user ask for an interview to the noknok user
+                    $member_id = Hashids::connection('user')->decode(Session::get('member_id'))[0];
+                    $interview_slug = Question::select('slug')->where(['id' => $interview_id])->first()['slug'];
+
+                    $url = url('/').'/'.$interview_slug;
+                    $details = [
+                        "notification_message" => "Invited you for an Interview",
+                        "user_id" => Auth::id(),
+                        "interview_url" => $url
+                    ];
+                    $notify_user = User::find($member_id);
+                    $notify_user->notify(new \App\Notifications\InviteInterview($details));
+                    Session::forget('member_id');//remove session
+                    
+                }
+            }
             $url = url('create-interview')."?published=".$request->interview_id;
             return redirect($url);
         }
