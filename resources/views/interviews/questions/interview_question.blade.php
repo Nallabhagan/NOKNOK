@@ -110,8 +110,7 @@
                     success:function(data)
                     {
                         if(data.message) {
-                            var url = "{{ url('noknok/give-your-interview') }}";
-                            window.location.href = url;
+                            window.location.href = data.url;
                         } else if(data.error) {
                             location.reload();
                         }

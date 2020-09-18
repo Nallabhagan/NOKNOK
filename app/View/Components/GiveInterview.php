@@ -24,7 +24,7 @@ class GiveInterview extends Component
      */
     public function render()
     {
-        $interviews = Question::select('title', 'description', 'slug', 'thumbnail_image')->where(['privacy_status' => 'PUBLIC'])->orderBy("id", "DESC")->paginate(8);
+        $interviews = Question::select("*")->where(['privacy_status' => 'PUBLIC'])->orderBy("id", "DESC")->paginate(6);
         
         return view('components.give-interview', compact('interviews'));
     }

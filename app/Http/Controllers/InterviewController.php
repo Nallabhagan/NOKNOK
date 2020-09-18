@@ -69,9 +69,10 @@ class InterviewController extends Controller
                 $notify_user->notify(new \App\Notifications\InterviewAnswered($details));
 
 
-                $url = url('user')."/".Hashids::connection('user')->encode(Auth::id())."/";
+                $url = url('interview')."/".Hashids::connection('answer_slug')->encode(Auth::id())."/".$question_info->slug."?answered=true";
                 return response()->json([
                     'message' => true,
+                    'url' => $url
                 ]);
             }
         }
@@ -79,10 +80,18 @@ class InterviewController extends Controller
 
     //to display full interview
     //questions + answers = full Interview
-    public function show_full_interview($user, $slug) {
+    public function show_full_interview($user, $slug, Request $request) {
 
         $user_id = Hashids::connection('answer_slug')->decode($user)[0];
         $interview = Interview::select('id', 'question_id', 'user_id', 'answers', 'created_at')->where(['user_id' => $user_id, 'slug' => $slug])->first();
-        return view('interviews.user_interview_pages.interview_taker',compact('interview'));
+
+
+        if($request->has('answered')) {
+            // return $interview;
+            return view('interviews.user_interview_pages.interview_published',compact('interview'));
+        } else {
+            return view('interviews.user_interview_pages.interview_taker',compact('interview'));   
+        }
+        
     }
 }
