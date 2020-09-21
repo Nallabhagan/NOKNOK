@@ -1,19 +1,4 @@
 <div class="row">
-	{{-- @foreach($interviews as $interview)
-		<div class="col-md-3">
-			<div class="course-card">
-				<div class="course-card-thumbnail">
-					<img src="{{ url('assets/interview_thumbnails') }}/{{ $interview->thumbnail_image }}">
-				</div>
-				<div class="course-card-body">
-					<h4>{{ $interview->title }}</h4>
-					<p> {{ $interview->description }}</p>
-					<a href="{{ url('/') }}/{{ $interview->slug }}" class="btn btn-sm">Give your Interview</a>
-				</div>
-			</div>
-		</div>
-	@endforeach --}}
-
 	@foreach($interviews as $interview)
 		<div class="star_answer col-md-4">
 			<div class="photo-box photo-category-box small box-shadow border" style="background-image: url(&quot;undefined&quot;);">
@@ -27,7 +12,7 @@
 						
 					</h3>
 					<div class="text-center">
-						<a href="http://localhost:8000/interview/xBB/knowing-how-to-fight-covid-19-virus" class="btn btn-primary btn-sm font-weight-bold mt-1">Give your interview</a>
+						<a href="{{ url('/') }}/{{ $interview->slug }}" class="btn btn-primary btn-sm font-weight-bold mt-1">Give your interview</a>
 					</div>
 				</div>
 			</div>
