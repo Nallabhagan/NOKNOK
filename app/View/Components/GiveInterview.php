@@ -2,8 +2,9 @@
 
 namespace App\View\Components;
 
-use Illuminate\View\Component;
 use App\Question;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\Component;
 
 class GiveInterview extends Component
 {
@@ -24,7 +25,14 @@ class GiveInterview extends Component
      */
     public function render()
     {
-        $interviews = Question::select("*")->where(['privacy_status' => 'PUBLIC'])->orderBy("id", "DESC")->paginate(6);
+        $interviews = DB::table('interviews')
+                 ->join('questions','questions.id','=','interviews.question_id')
+                 ->select('question_id', DB::raw('count(*) as answer_count'))
+                 ->groupBy('question_id')
+                 ->where(['questions.privacy_status' => 'PUBLIC'])
+                 ->orderBy('answer_count','DESC')
+                 ->paginate(6);
+        // $interviews = Question::select("*")->where(['privacy_status' => 'PUBLIC'])->orderBy("id", "DESC")->paginate(6);
         
         return view('components.give-interview', compact('interviews'));
     }

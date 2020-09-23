@@ -5,12 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@home_page');
 
+
 Route::get('home', function () {
-	// return bcrypt('kittensdie2');
-	// Mail::to("nallapagan1997@gmail.com")->send(new QPartyInvitationMail());
-	
-	
-    return view('home');
+    return redirect("/");	
 });
 Auth::routes(['verify' => true]);
 Route::get('login/google', 'Auth\SocilMediaAuthController@redirectToProvider');
@@ -29,6 +26,7 @@ Route::get('create-interview', 'QuestionController@index');
 Route::post('api/create-interview', 'QuestionController@store');
 Route::post('api/question/{id}', 'QuestionController@get_questions');
 Route::post('create-interview/publish_interview/', 'QuestionController@publish_interview')->name('publish_interview');
+Route::get('answers/{slug:slug}', 'PagesController@answers_page');
 //end create interview Routes
 
 //Question & Answer - Full Interviews Routes

@@ -1121,7 +1121,7 @@ ul.twPc-Arrange {
   margin-left: 4px;
 }
 
-.post .post-state-details {
+.post-state-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1129,25 +1129,25 @@ ul.twPc-Arrange {
   padding-right: 4px;
 }
 
-.post .post-state-details div {
+.post-state-details div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.post .post-state-details * img {
+.post-state-details * img {
   width: 27px;
   border-radius: 100%;
   z-index: 2;
   border: 3px solid white;
 }
 
-.post .post-state-details * img:nth-child(2) {
+.post-state-details * img:nth-child(2) {
   margin-left: -6px;
   z-index: 1;
 }
 
-.post .post-state-details p {
+.post-state-details p {
   margin-bottom: 0;
   font-size: 13px;
 }

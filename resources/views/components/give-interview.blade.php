@@ -5,14 +5,17 @@
 				<div class="utf-opening-box-content-part">
 
 					<p class="mt-1" style="font-size: 24px;line-height: 32px;">
-						{{ $interview->title }}
+						{{ Helper::interview_question_details($interview->question_id)->title }}
 					</p>
 					<h3 class="mb-1" style="font-size:16px;color:#373737;">
-						{{ Str::limit($interview->description, 110)}}
+						{{ Str::limit(Helper::interview_question_details($interview->question_id)->description, 110)}}
 						
 					</h3>
 					<div class="text-center">
-						<a href="{{ url('/') }}/{{ $interview->slug }}" class="btn btn-primary btn-sm font-weight-bold mt-1">Give your interview</a>
+						@if($interview->answer_count != 0)
+							<a href="{{ url('answers') }}/{{ Helper::interview_question_details($interview->question_id)->slug }}" class="btn btn-success btn-sm font-weight-bold mt-1">{{ $interview->answer_count }} Answers</a>
+						@endif
+						<a href="{{ url('/') }}/{{ Helper::interview_question_details($interview->question_id)->slug }}" class="btn btn-primary btn-sm font-weight-bold mt-1">Give your interview</a>
 					</div>
 				</div>
 			</div>

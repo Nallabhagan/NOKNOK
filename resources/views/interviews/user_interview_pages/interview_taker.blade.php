@@ -30,7 +30,6 @@
 	<div class="row">
 		<div class="col-xl-8 col-lg-8 offset-xl-2 pl-0 pr-0">
 			<div class="blog-post single-post">
-				<img src="{{ url('assets/interview_thumbnails/') }}/{{ Helper::interview_question_details($interview->question_id)->thumbnail_image }}" alt="" style="width: 100%;"> 
 				<div class="post-heading">
 				    <div class="post-avature">
 				        <img src="{{ Helper::user_profile_pic($interview->user_id) }}" alt="">

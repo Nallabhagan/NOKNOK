@@ -91,4 +91,10 @@ class Helper
 		$like_count = NokItLike::select('user_id')->where(['nok_it_id' => $id])->count();
 		return $like_count;
 	}
+
+	public static function answers_count($id)
+	{
+		$answer_count = Interview::select('id')->where(['question_id' => $id])->count();
+		return $answer_count;
+	}
 }
